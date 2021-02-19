@@ -5,11 +5,13 @@ import 'react-activity-feed/dist/index.es.css'
 
 import { getToken } from '../api'
 
-const API_KEY = process.env.API_KEY
-const APP_ID = process.env.APP_ID
+const API_KEY = process.env.REACT_APP_API_KEY
+const APP_ID = process.env.REACT_APP_APP_ID
 
 const Demo = () => {
   console.log('DEMO')
+  console.log(`API_KEY: ${API_KEY}`)
+  console.log(`APP_ID: ${APP_ID}`)
 
   const [token, setToken] = useState('')
 
