@@ -23,6 +23,6 @@ const get = resource => {
   })
 }
 
-const getToken = () => get(`token`).then(result => result)
+const getToken = () => get(`token`).then(result => result.token)
 
 export { getToken }

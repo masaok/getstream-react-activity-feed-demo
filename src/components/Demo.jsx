@@ -9,11 +9,15 @@ const API_KEY = process.env.API_KEY
 const APP_ID = process.env.APP_ID
 
 const Demo = () => {
+  console.log('DEMO')
+
   const [token, setToken] = useState('')
 
   useEffect(() => {
+    console.log('USE EFFECT')
     const retrieveToken = async () => {
       const newToken = await getToken()
+      console.log(`NEW TOKEN: ${newToken}`)
       setToken(newToken)
     }
     retrieveToken()
@@ -21,10 +25,12 @@ const Demo = () => {
 
   return (
     <div style={{ width: '600px', margin: '0 auto' }}>
-      <StreamApp apiKey={API_KEY} appId={APP_ID} token={token}>
-        <StatusUpdateForm />
-        <FlatFeed feedGroup="user" notify />
-      </StreamApp>
+      {token && (
+        <StreamApp apiKey={API_KEY} appId={APP_ID} token={token}>
+          <StatusUpdateForm />
+          {/* <FlatFeed feedGroup="user" notify /> */}
+        </StreamApp>
+      )}
     </div>
   )
 }

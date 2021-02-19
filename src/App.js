@@ -2,10 +2,10 @@ import React from 'react'
 
 import Demo from './components/Demo'
 
-class App extends React.Component {
-  render() {
-    return <Demo />
-  }
+const App = () => {
+  console.log('APP')
+
+  return <Demo />
 }
 
 export default App
