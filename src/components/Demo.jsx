@@ -30,7 +30,7 @@ const Demo = () => {
       {token && (
         <StreamApp apiKey={API_KEY} appId={APP_ID} token={token}>
           <StatusUpdateForm />
-          {/* <FlatFeed feedGroup="user" notify /> */}
+          <FlatFeed feedGroup="user" notify />
         </StreamApp>
       )}
     </div>
