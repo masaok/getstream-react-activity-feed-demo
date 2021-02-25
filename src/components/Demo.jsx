@@ -60,12 +60,20 @@ const Demo = () => {
       // Client-side: Instantiate a feed for feed group 'user', user id '1'
       // and a security token generated server side
       // https://getstream.io/activity-feeds/docs/javascript/adding_activities/?language=javascript#adding-activities:-basic
-      // Error: "Don't impersonate other users", Status 403, Code 17, "NotAllowedException"
       console.log('CREATE USER CLIENT SIDE')
       const user1 = client.feed('user', 'test-user-1', token)
 
-      // // Create a new activity
-      const activity = { actor: 1, verb: 'tweet', object: 1, foreign_id: 'tweet:1' }
+      // Create a new activity
+
+      // Error: "Don't impersonate other users", Status 403, Code 17, "NotAllowedException"
+      // https://getstream.io/activity-feeds/docs/node/auth_and_permissions/?language=js&q=reference#dont-impersonate-other-users
+      const activity = {
+        // actor: client.user(user.id),
+        actor: client.currentUser,
+        verb: 'tweet',
+        object: 'hardcoded activity add in react',
+        foreign_id: 'tweet:1',
+      }
       user1.addActivity(activity)
     }
   }, [client])

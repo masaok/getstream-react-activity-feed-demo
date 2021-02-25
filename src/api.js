@@ -1,9 +1,9 @@
-import { isDev } from './common'
+import { inDevMode } from './common'
 // TODO: Use an environment variable here
 // TODO: PROD - Vercel
 // TODO: DEV - localhost:4000
 
-const api = isDev() ? 'http://localhost:4000/' : 'https://getstream-token-api-demo.vercel.app/'
+const api = inDevMode() ? 'http://localhost:4000/' : 'https://getstream-token-api-demo.vercel.app/'
 
 const BASE_API_REQUEST_HEADER = {
   'Content-Type': 'application/json',
