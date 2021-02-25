@@ -46,15 +46,22 @@ const Demo = () => {
       // Error: "You do not have permission to do this"
       // Status: 403, code 17, NotAllowedException
       // console.log('CREATE USER with getOrCreate')
-      client.user('john-doe').getOrCreate({
-        name: 'John Doe',
-        occupation: 'Software Engineer',
-        gender: 'male',
-      })
+      // client.user('john-doe').getOrCreate({
+      //   name: 'John Doe',
+      //   occupation: 'Software Engineer',
+      //   gender: 'male',
+      // })
 
       // Instantiate a feed object server side
-      console.log('CREATE USER')
-      const user1 = client.feed('user', 'john-doe')
+      // https://getstream.io/activity-feeds/docs/javascript/adding_activities/?language=javascript#adding-activities:-basic
+      // console.log('CREATE USER SERVER SIDE')
+      // const user1 = client.feed('user', 'john-doe')
+
+      // Client-side: Instantiate a feed for feed group 'user', user id '1'
+      // and a security token generated server side
+      // https://getstream.io/activity-feeds/docs/javascript/adding_activities/?language=javascript#adding-activities:-basic
+      console.log('CREATE USER CLIENT SIDE')
+      const user1 = client.feed('user', 'test-user-1', token)
 
       // // Create a new activity
       const activity = { actor: 1, verb: 'tweet', object: 1, foreign_id: 'tweet:1' }
@@ -62,6 +69,8 @@ const Demo = () => {
     }
   }, [client])
 
+  // Timeline Feed
+  // https://getstream.io/react-activity-feed/tutorial/
   return (
     <div style={{ width: '600px', margin: '0 auto' }}>
       {token && (
