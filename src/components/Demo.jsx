@@ -60,6 +60,7 @@ const Demo = () => {
       // Client-side: Instantiate a feed for feed group 'user', user id '1'
       // and a security token generated server side
       // https://getstream.io/activity-feeds/docs/javascript/adding_activities/?language=javascript#adding-activities:-basic
+      // Error: "Don't impersonate other users", Status 403, Code 17, "NotAllowedException"
       console.log('CREATE USER CLIENT SIDE')
       const user1 = client.feed('user', 'test-user-1', token)
 
