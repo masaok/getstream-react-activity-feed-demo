@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { StreamApp, StatusUpdateForm, FlatFeed } from 'react-activity-feed'
 import 'react-activity-feed/dist/index.es.css'
 
-import { getToken } from '../api'
+import { getToken, postCreateToken } from '../api'
 
 import { connect } from 'getstream'
 // or if you are on commonjs
@@ -12,6 +12,8 @@ import { connect } from 'getstream'
 
 const API_KEY = process.env.REACT_APP_API_KEY
 const APP_ID = process.env.REACT_APP_APP_ID
+
+const userId = 'test-user-1'
 
 const Demo = () => {
   console.log('DEMO')
@@ -24,7 +26,11 @@ const Demo = () => {
   useEffect(() => {
     console.log('USE EFFECT')
     const retrieveToken = async () => {
-      const newToken = await getToken()
+      const payload = {
+        userId,
+      }
+      const newToken = await postCreateToken(payload)
+      if (!newToken) throw new Error('token creation failed')
       console.log(`NEW TOKEN: ${newToken}`)
       setToken(newToken)
     }
@@ -61,7 +67,7 @@ const Demo = () => {
       // and a security token generated server side
       // https://getstream.io/activity-feeds/docs/javascript/adding_activities/?language=javascript#adding-activities:-basic
       console.log('CREATE USER CLIENT SIDE')
-      const user1 = client.feed('user', 'test-user-1', token)
+      const user1 = client.feed('user', userId, token)
 
       // Create a new activity
 

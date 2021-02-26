@@ -23,6 +23,17 @@ const get = resource => {
   })
 }
 
-const getToken = () => get(`token`).then(result => result.token)
+const post = (resource, payload) => {
+  const options = {
+    method: 'POST',
+    headers: { ...BASE_API_REQUEST_HEADER },
+    body: payload ? JSON.stringify(payload) : null,
+  }
 
-export { getToken }
+  return fetch(urlFor(resource), options).then(response => response?.json())
+}
+
+const getToken = () => get(`token`).then(result => result.token)
+const postCreateToken = payload => post(`token`, payload).then(result => result.token)
+
+export { getToken, postCreateToken }
